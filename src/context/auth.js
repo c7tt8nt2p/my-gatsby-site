@@ -1,23 +1,31 @@
-import React, { createContext, useEffect, useState } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { firebaseAuth } from '../firebase';
+import React, {createContext, useContext, useEffect, useState} from 'react';
+import {onAuthStateChanged} from 'firebase/auth';
+import {firebaseAuth} from '../firebase';
+import {netlifyIdentity} from '../netlify';
 
 export const AuthContext = createContext({});
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState();
+const AuthProvider = ({children}) => {
+    const [firebaseUser, setFirebaseUser] = useState();
+    const [netlifyUser, setNetlifyUser] = useState();
 
-  useEffect(() => {
-    onAuthStateChanged(firebaseAuth, (user) => {
-      console.log('onAuthStateChanged', user);
-      setUser(user);
-    });
-  }, []);
+    useEffect(() => {
+        onAuthStateChanged(firebaseAuth, (user) => {
+            console.log('onAuthStateChanged', user);
+            console.log('email', user?.email);
+            setFirebaseUser(user);
+        });
 
-  return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
+        if (netlifyIdentity.currentUser()) {
+            console.log('setNetlifyUser', netlifyIdentity.currentUser());
+            setNetlifyUser(netlifyIdentity.currentUser());
+        }
+    }, []);
+
+    return (
+        <AuthContext.Provider value={{firebaseUser, setFirebaseUser, netlifyUser, setNetlifyUser}}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
 export default AuthProvider;
