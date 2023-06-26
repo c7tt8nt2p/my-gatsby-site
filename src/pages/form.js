@@ -18,7 +18,7 @@ const Register = () => {
     };
 
     return (
-        <form name="contact" method="POST" data-netlify="true">
+        <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
             <input type="hidden" name="form-name" value="contact"/>
             <p>
                 <label>Your Name: <input type="text" name="name"/></label>
@@ -29,6 +29,7 @@ const Register = () => {
             <p>
                 <label>Message: <textarea name="message"></textarea></label>
             </p>
+            <div data-netlify-recaptcha="true"></div>
             <p>
                 <button type="submit">Send</button>
             </p>
