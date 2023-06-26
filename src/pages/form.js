@@ -30,7 +30,7 @@ const Register = () => {
     };
 
     return (
-        <form name="contact" method="POST" netlify>
+        <form name="contact" method="POST" data-netlify="true">
             <p>
                 <label>Your Name: <input type="text" name="name" onChange={handleChange}/></label>
             </p>
@@ -38,7 +38,7 @@ const Register = () => {
                 <label>Your Email: <input type="email" name="email" onChange={handleChange}/></label>
             </p>
             <p>
-                <label>Message: <textarea name="message" onChange={handleChange}></textarea></label>
+                <label>Message: <textarea name="message"></textarea></label>
             </p>
             <p>
                 <button type="submit">Send</button>
