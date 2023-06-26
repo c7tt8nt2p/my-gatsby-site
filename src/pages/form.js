@@ -1,18 +1,6 @@
-import React, {useContext, useState} from 'react';
-import {navigate} from 'gatsby';
-import {AuthContext} from '../context/auth';
-import {createUserWithEmailAndPassword} from 'firebase/auth';
-import {firebaseAuth} from '../firebase';
+import React, {useState} from 'react';
 
 const Register = () => {
-    const [data, setData] = useState({
-        name: '',
-        email: '',
-        message: '',
-    });
-
-    const handleChange = (e) =>
-        setData({...data, [e.target.name]: e.target.value});
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,7 +10,7 @@ const Register = () => {
 
         fetch("/", {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            headers: {"Content-Type": "application/x-www-form-urlencoded"},
             body: new URLSearchParams(formData).toString(),
         })
             .then(() => console.log("Form successfully submitted"))
@@ -31,11 +19,12 @@ const Register = () => {
 
     return (
         <form name="contact" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="contact"/>
             <p>
-                <label>Your Name: <input type="text" name="name" onChange={handleChange}/></label>
+                <label>Your Name: <input type="text" name="name"/></label>
             </p>
             <p>
-                <label>Your Email: <input type="email" name="email" onChange={handleChange}/></label>
+                <label>Your Email: <input type="email" name="email"/></label>
             </p>
             <p>
                 <label>Message: <textarea name="message"></textarea></label>
