@@ -12,7 +12,8 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "deploy-firebase": "firebase deploy --only hosting"
   },
   "dependencies": {
     "@vanilla-extract/css": "^1.11.1",
