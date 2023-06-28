@@ -130,6 +130,9 @@ const links = [
 const IndexPage = () => {
     const {firebaseUser, netlifyUser} = useContext(AuthContext);
 
+    const showAlert = () => {
+        alert("Hello");
+    }
     return (
         <main style={pageStyles}>
             {firebaseUser ? (
@@ -153,6 +156,8 @@ const IndexPage = () => {
                     <span>Netlify Not signed in</span>
                 </>
             )}
+            <hr/>
+            <button onClick={showAlert}>Alert</button>
             <hr/>
             <h1 style={headingStyles}>
                 Congratulations
